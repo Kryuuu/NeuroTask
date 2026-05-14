@@ -490,7 +490,7 @@
 
 .timer-ring-progress {
   fill: none;
-  stroke: url(#timerGradient);
+  stroke: var(--accent-purple-light);
   stroke-width: 6;
   stroke-linecap: round;
   stroke-dasharray: 565.48;

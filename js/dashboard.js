@@ -32,6 +32,65 @@ const NTDashboard = (() => {
     setStatText('dashCompleted', completedSteps);
     setStatText('dashStreak', NTStorage.updateStreak());
     setStatText('dashFocusHrs', Math.round(NTStorage.getFocusTotal() / 60 * 10) / 10);
+
+    updateHeroCards(tasks);
+  }
+
+  /** Dynamically update Hero Section floating cards */
+  function updateHeroCards(tasks) {
+    /* Card 1: Urgent Task */
+    const card1 = document.querySelector('.card-1');
+    if (card1) {
+      const pendingTasks = tasks.filter(t => {
+         const comp = t.steps.filter(s => s.completed).length;
+         return comp < t.steps.length;
+      }).sort((a, b) => a.daysRemaining - b.daysRemaining);
+      
+      if (pendingTasks.length > 0) {
+        const t = pendingTasks[0];
+        card1.querySelector('.fc-title').textContent = t.name.length > 20 ? t.name.substring(0, 20) + '...' : t.name;
+        card1.querySelector('.fc-sub').textContent = t.daysRemaining + ' hari lagi';
+        card1.querySelector('.fc-urgency').className = 'fc-urgency ' + (t.urgency ? t.urgency.class : 'urgency-warn');
+        card1.querySelector('.fc-urgency').textContent = t.urgency ? t.urgency.text : 'Mendesak';
+      } else {
+        card1.querySelector('.fc-title').textContent = 'Tidak Ada Tugas';
+        card1.querySelector('.fc-sub').textContent = 'Semua selesai!';
+        card1.querySelector('.fc-urgency').className = 'fc-urgency urgency-safe';
+        card1.querySelector('.fc-urgency').textContent = 'Santai';
+      }
+    }
+
+    /* Card 2: Highest Progress */
+    const card2 = document.querySelector('.card-2');
+    if (card2) {
+      const inProgressTasks = tasks.filter(t => t.steps.length > 0).sort((a,b) => {
+         const pA = a.steps.filter(s=>s.completed).length / a.steps.length;
+         const pB = b.steps.filter(s=>s.completed).length / b.steps.length;
+         return pB - pA;
+      });
+
+      if (inProgressTasks.length > 0) {
+        const t = inProgressTasks[0];
+        const comp = t.steps.filter(s => s.completed).length;
+        const total = t.steps.length;
+        const pct = Math.round((comp/total)*100);
+        card2.querySelector('.fc-title').textContent = `${comp}/${total} Subtask Selesai`;
+        const fill = card2.querySelector('.fc-progress-fill');
+        if (fill) fill.style.width = `${pct}%`;
+      } else {
+        card2.querySelector('.fc-title').textContent = `0/0 Subtask Selesai`;
+        const fill = card2.querySelector('.fc-progress-fill');
+        if (fill) fill.style.width = `0%`;
+      }
+    }
+
+    /* Card 3: Streak */
+    const card3 = document.querySelector('.card-3');
+    if (card3) {
+      const streak = NTStorage.getStreak();
+      card3.querySelector('.fc-title').textContent = `${streak} Hari Streak!`;
+      card3.querySelector('.fc-sub').textContent = `Produktivitas naik ${Math.min(streak * 3, 100)}%`;
+    }
   }
 
   function setStatText(id, value) {
@@ -91,11 +150,7 @@ const NTDashboard = (() => {
       data[adjusted] += task.steps.filter(s => s.completed).length;
     });
 
-    /* Add demo data if empty */
-    if (data.every(d => d === 0)) {
-      data[0] = 3; data[1] = 5; data[2] = 4; data[3] = 7;
-      data[4] = 6; data[5] = 2; data[6] = 4;
-    }
+    /* No fallback dummy data */
 
     const maxVal = Math.max(...data, 1);
     const padding = isMobile() ? 20 : 40;
@@ -169,7 +224,7 @@ const NTDashboard = (() => {
     const tasks = NTStorage.getTasks();
     const totalSteps = tasks.reduce((sum, t) => sum + t.steps.length, 0);
     const completedSteps = tasks.reduce((sum, t) => sum + t.steps.filter(s => s.completed).length, 0);
-    const percentage = totalSteps > 0 ? Math.round((completedSteps / totalSteps) * 100) : 68;
+    const percentage = totalSteps > 0 ? Math.round((completedSteps / totalSteps) * 100) : 0;
 
     /* Background ring */
     ctx.beginPath();
@@ -210,8 +265,30 @@ const NTDashboard = (() => {
     const hours = mobile 
       ? ['06', '08', '10', '12', '14', '16', '18', '20', '22', '00']
       : ['06', '08', '10', '12', '14', '16', '18', '20', '22', '00'];
-    const data = [2, 3, 5, 4, 3, 4, 6, 9, 8, 3];
-    const maxVal = Math.max(...data);
+
+    /* Dynamic Data based on timer sessions */
+    const sessions = NTStorage.getTimerSessions();
+    let data = new Array(10).fill(0);
+    if (sessions && sessions.length > 0) {
+      sessions.forEach(s => {
+        const date = new Date(s.date);
+        const hour = date.getHours();
+        let bin = 0;
+        if (hour >= 6 && hour < 8) bin = 0;
+        else if (hour >= 8 && hour < 10) bin = 1;
+        else if (hour >= 10 && hour < 12) bin = 2;
+        else if (hour >= 12 && hour < 14) bin = 3;
+        else if (hour >= 14 && hour < 16) bin = 4;
+        else if (hour >= 16 && hour < 18) bin = 5;
+        else if (hour >= 18 && hour < 20) bin = 6;
+        else if (hour >= 20 && hour < 22) bin = 7;
+        else if (hour >= 22 && hour < 24) bin = 8;
+        else bin = 9; /* 00:00 - 06:00 */
+        data[bin]++;
+      });
+    }
+
+    const maxVal = Math.max(...data, 1);
     const padding = mobile ? 10 : 20;
     const barWidth = (w - padding * 2) / hours.length;
     const chartBottom = h - 22;
@@ -268,22 +345,12 @@ const NTDashboard = (() => {
       courses[course] = (courses[course] || 0) + t.steps.length;
     });
 
-    if (Object.keys(courses).length === 0) {
-      courses = {
-        'Kalkulus II': 8,
-        'Basis Data': 6,
-        'Pemrograman Web': 5,
-        'Pancasila': 3,
-        'Statistika': 4
-      };
-    }
-
     const entries = Object.entries(courses).sort((a, b) => b[1] - a[1]);
     const barHeight = mobile ? 22 : 28;
     const chartH = Math.max(160, entries.length * (barHeight + 10) + 20);
     const { ctx, w, h } = setupCanvas(canvas, chartH);
 
-    const maxVal = Math.max(...entries.map(e => e[1]));
+    const maxVal = Math.max(...entries.map(e => e[1]), 1);
     const labelWidth = mobile ? 80 : 120;
     const chartLeft = labelWidth;
     const chartWidth = w - chartLeft - (mobile ? 50 : 60);

@@ -181,6 +181,7 @@ const NTPlanner = (() => {
     NTStorage.saveTask(task);
     renderPlanOutput(task);
     renderSavedTasks();
+    if (typeof NTDashboard !== 'undefined') NTDashboard.refresh();
     showToast('Smart Plan berhasil dibuat! ✨', 'success');
   }
 
