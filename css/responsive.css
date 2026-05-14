@@ -1,0 +1,767 @@
+/* ============================================
+   NeuroTask — Responsive Design
+   iOS & Mobile-first — Comprehensive
+   ============================================ */
+
+/* --- iOS Safe Area Support --- */
+body {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* --- iOS Input Fix --- */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+button,
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  font-size: 16px; /* Prevents iOS zoom on focus */
+}
+
+/* Restore border-radius after disabling appearance */
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+  border-radius: var(--radius-md);
+}
+
+button {
+  border-radius: inherit;
+}
+
+/* --- iOS Tap Highlight Fix --- */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Touch-friendly targets --- */
+@media (pointer: coarse) {
+  .plan-step {
+    min-height: 48px;
+    padding: 14px var(--space-md);
+  }
+
+  .step-checkbox {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+  }
+
+  .diff-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  .faq-question {
+    min-height: 52px;
+  }
+
+  .carousel-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
+  }
+
+  .timer-mode {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .nav-link {
+    padding: 8px 0;
+  }
+
+  .btn {
+    min-height: 48px;
+  }
+}
+
+/* --- Canvas Responsive Wrapper --- */
+.insight-chart-wrap,
+.dash-chart-card,
+.dash-ring-card {
+  overflow: hidden;
+}
+
+.insight-chart-wrap canvas,
+.dash-chart-card canvas {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+/* --- Tablet (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .planner-container {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .insight-card:last-child {
+    grid-column: auto;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .floating-card {
+    display: none;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+}
+
+/* --- Mobile (max-width: 768px) --- */
+@media (max-width: 768px) {
+  :root {
+    --space-5xl: 80px;
+    --space-4xl: 64px;
+    --space-3xl: 48px;
+  }
+
+  /* --- Navigation Mobile --- */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for iOS */
+    background: rgba(10, 10, 15, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xl);
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 9999;
+    border-left: none;
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 1.3rem;
+    padding: 12px 0;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+    z-index: 10001;
+    padding: 12px;
+  }
+
+  .nav-toggle span {
+    width: 26px;
+    height: 2.5px;
+  }
+
+  .nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  /* --- Hero Mobile --- */
+  .hero {
+    padding: var(--space-4xl) var(--space-md);
+    padding-top: calc(var(--space-4xl) + env(safe-area-inset-top));
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    line-height: 1.15;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 var(--space-sm);
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 var(--space-md);
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    flex-direction: row;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .stat-item {
+    min-width: 80px;
+  }
+
+  .stat-number {
+    font-size: 1.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+  }
+
+  /* --- Sections --- */
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-xl);
+    padding: 0 var(--space-xs);
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 5.5vw, 2rem);
+    line-height: 1.25;
+  }
+
+  .section-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .section-tag {
+    font-size: 0.78rem;
+    padding: 6px 12px;
+  }
+
+  /* --- Features Mobile --- */
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .feature-card {
+    padding: var(--space-lg);
+  }
+
+  .feature-icon-wrap {
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .feature-card p {
+    font-size: 0.85rem;
+  }
+
+  /* --- Planner Mobile --- */
+  .planner-container {
+    gap: var(--space-md);
+  }
+
+  .planner-input-panel {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .planner-output-panel {
+    padding: var(--space-lg);
+    min-height: auto;
+    border-radius: var(--radius-lg);
+  }
+
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .input-group label {
+    font-size: 0.8rem;
+  }
+
+  .input-group input[type="text"],
+  .input-group input[type="date"] {
+    padding: 14px 16px;
+    font-size: 16px; /* iOS zoom prevention */
+  }
+
+  .difficulty-selector {
+    justify-content: space-between;
+  }
+
+  .plan-header {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+
+  .plan-meta {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .plan-step {
+    padding: 12px;
+  }
+
+  .step-text {
+    font-size: 0.85rem;
+  }
+
+  .step-time {
+    font-size: 0.7rem;
+  }
+
+  .saved-tasks-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .saved-task-card {
+    padding: var(--space-md);
+  }
+
+  /* --- Dashboard Mobile --- */
+  .dashboard-grid {
+    gap: var(--space-md);
+  }
+
+  .dash-card {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .dash-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    padding: var(--space-lg);
+  }
+
+  .dash-stat-number {
+    font-size: 1.5rem;
+  }
+
+  .dash-stat-label {
+    font-size: 0.72rem;
+  }
+
+  .dash-card h4 {
+    font-size: 0.9rem;
+    margin-bottom: var(--space-md);
+  }
+
+  /* Chart cards mobile — ensure good height */
+  .dash-chart-card canvas {
+    height: 200px !important;
+    width: 100% !important;
+  }
+
+  .dash-ring-card {
+    text-align: center;
+  }
+
+  .ring-chart-wrap {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+  }
+
+  .ring-chart-wrap canvas {
+    width: 160px !important;
+    height: 160px !important;
+  }
+
+  .ring-center-text {
+    font-size: 1.6rem;
+  }
+
+  /* Timer Mobile */
+  .dash-timer-card {
+    grid-column: auto;
+  }
+
+  .timer-display {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .timer-text {
+    font-size: 2.2rem;
+  }
+
+  .timer-modes {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+  }
+
+  .timer-controls {
+    gap: var(--space-sm);
+  }
+
+  .timer-controls .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* --- Insights Mobile --- */
+  .insights-grid {
+    gap: var(--space-md);
+  }
+
+  .insight-card {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .insight-card:last-child {
+    grid-column: auto;
+  }
+
+  .insight-header span {
+    font-size: 1.1rem;
+  }
+
+  .insight-header h4 {
+    font-size: 0.9rem;
+  }
+
+  .insight-chart-wrap canvas {
+    height: 160px !important;
+    width: 100% !important;
+  }
+
+  .insight-tip {
+    font-size: 0.8rem;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .tip-item {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .tip-item p {
+    font-size: 0.85rem;
+  }
+
+  /* --- Testimonials Mobile --- */
+  .testimonial-card {
+    padding: var(--space-xl) var(--space-md);
+    min-width: 100%;
+  }
+
+  .testi-stars {
+    font-size: 1rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .testi-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+    padding: 0;
+  }
+
+  .testi-author {
+    gap: var(--space-sm);
+  }
+
+  .testi-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .testi-author strong {
+    font-size: 0.85rem;
+  }
+
+  .testi-author span {
+    font-size: 0.75rem;
+  }
+
+  .carousel-controls {
+    margin-top: var(--space-lg);
+  }
+
+  /* --- FAQ Mobile --- */
+  .faq-list {
+    gap: var(--space-sm);
+  }
+
+  .faq-question {
+    font-size: 0.88rem;
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .faq-answer p {
+    padding: 0 var(--space-md) var(--space-md);
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+
+  /* --- CTA Mobile --- */
+  .cta-title {
+    font-size: clamp(1.4rem, 5.5vw, 2rem);
+  }
+
+  .cta-desc {
+    font-size: 0.9rem;
+  }
+
+  .cta-form {
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: var(--space-sm);
+  }
+
+  .cta-input {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .cta-form .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-trust {
+    flex-direction: column;
+    gap: var(--space-sm);
+    font-size: 0.75rem;
+  }
+
+  /* --- Footer Mobile --- */
+  .footer {
+    padding: var(--space-2xl) 0 var(--space-lg);
+    padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom));
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .footer-brand p {
+    font-size: 0.82rem;
+  }
+
+  .footer-links h4 {
+    font-size: 0.85rem;
+  }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    padding: 6px 0;
+  }
+
+  .footer-bottom p {
+    font-size: 0.72rem;
+  }
+
+  /* --- Toast Mobile --- */
+  .toast-container {
+    left: var(--space-md);
+    right: var(--space-md);
+    bottom: calc(var(--space-md) + env(safe-area-inset-bottom));
+  }
+
+  .toast {
+    font-size: 0.85rem;
+    padding: var(--space-md);
+  }
+
+  /* --- Cursor glow off on mobile/touch --- */
+  .cursor-glow {
+    display: none !important;
+  }
+
+  /* --- Scroll Progress thinner on mobile --- */
+  .scroll-progress {
+    height: 2px;
+  }
+}
+
+/* --- Small Mobile (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .hero {
+    padding: var(--space-3xl) var(--space-md);
+    padding-top: calc(80px + env(safe-area-inset-top));
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 0.88rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .planner-input-panel,
+  .planner-output-panel {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+  }
+
+  .dash-card {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+  }
+
+  .dash-stats {
+    padding: var(--space-md);
+  }
+
+  .dash-stat-number {
+    font-size: 1.3rem;
+  }
+
+  .testimonial-card {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .testi-text {
+    font-size: 0.85rem;
+  }
+
+  .insight-card {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+  }
+
+  .plan-step {
+    gap: var(--space-sm);
+  }
+
+  .step-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* --- Landscape Phone Fix --- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-stats {
+    flex-direction: row;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: var(--space-md);
+  }
+}
+
+/* --- Very tall phones (iPhone Pro Max etc.) --- */
+@media (min-height: 800px) and (max-width: 480px) {
+  .hero {
+    padding-top: calc(100px + env(safe-area-inset-top));
+  }
+
+  .hero-cta-group {
+    margin-bottom: var(--space-2xl);
+  }
+}
+
+/* --- iOS Date Input Styling --- */
+@media (max-width: 768px) {
+  input[type="date"] {
+    color-scheme: dark;
+    min-height: 48px;
+  }
+
+  input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
+  }
+}

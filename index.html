@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="NeuroTask - Your Second Brain for Academic Survival. Platform produktivitas mahasiswa untuk memecah tugas besar menjadi langkah kecil.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>NeuroTask — Your Second Brain for Academic Survival</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-icon">&#x1F9E0;</span>
+        <span class="logo-text">Neuro<span class="logo-accent">Task</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#planner" class="nav-link">Planner</a>
+        <a href="#dashboard" class="nav-link">Dashboard</a>
+        <a href="#insights" class="nav-link">Insights</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </div>
+      <a href="#planner" class="nav-cta">Mulai Sekarang</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <canvas class="neural-canvas" id="neuralCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Platform Produktivitas #1 untuk Mahasiswa</span>
+      </div>
+      <h1 class="hero-title">
+        Your Second Brain for<br>
+        <span class="gradient-text" id="heroTyping">Academic Survival</span>
+      </h1>
+      <p class="hero-subtitle">Pecah tugas besar menjadi langkah kecil. Kalahkan deadline. Raih nilai terbaik dengan otak kedua digital kamu.</p>
+      <div class="hero-cta-group">
+        <a href="#planner" class="btn btn-primary btn-glow">
+          <span>&#x26A1;</span> Mulai Sekarang — Gratis
+        </a>
+        <a href="#features" class="btn btn-ghost">
+          <span>&#x25B6;</span> Lihat Fitur
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-number" data-target="10847">0</span><span class="stat-label">Tugas Diselesaikan</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-number" data-target="5234">0</span><span class="stat-label">Mahasiswa Aktif</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-item"><span class="stat-number" data-target="98" data-suffix="%">0</span><span class="stat-label">Lebih Produktif</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-card card-1">
+        <div class="fc-icon">&#x1F4CB;</div>
+        <div class="fc-text">
+          <span class="fc-title">Essay Filsafat</span>
+          <span class="fc-sub">3 hari lagi</span>
+        </div>
+        <div class="fc-urgency urgency-warning">Mendesak</div>
+      </div>
+      <div class="floating-card card-2">
+        <div class="fc-icon">&#x2705;</div>
+        <div class="fc-text">
+          <span class="fc-title">4/5 Subtask Selesai</span>
+          <div class="fc-progress"><div class="fc-progress-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+      <div class="floating-card card-3">
+        <div class="fc-icon">&#x1F525;</div>
+        <div class="fc-text">
+          <span class="fc-title">7 Hari Streak!</span>
+          <span class="fc-sub">Produktivitas naik 23%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&#x2728; Fitur Unggulan</span>
+        <h2 class="section-title">Semua yang Kamu Butuhkan<br><span class="gradient-text">untuk Bertahan di Kampus</span></h2>
+        <p class="section-desc">Tools cerdas yang dirancang khusus untuk workflow mahasiswa modern.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal" data-delay="0">
+          <div class="feature-icon-wrap"><span class="feature-icon">&#x1F9E9;</span></div>
+          <h3>Smart Breakdown</h3>
+          <p>Pecah tugas besar menjadi langkah-langkah kecil secara otomatis berdasarkan tingkat kesulitan dan deadline.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="100">
+          <div class="feature-icon-wrap"><span class="feature-icon">&#x23F0;</span></div>
+          <h3>Deadline Intelligence</h3>
+          <p>Urgency meter real-time yang berubah warna berdasarkan sisa waktu. Tidak ada lagi deadline terlewat.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="200">
+          <div class="feature-icon-wrap"><span class="feature-icon">&#x1F3AF;</span></div>
+          <h3>Focus Mode</h3>
+          <p>Pomodoro timer dengan ambient sounds. Tingkatkan konsentrasi dan lacak waktu fokusmu setiap hari.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="300">
+          <div class="feature-icon-wrap"><span class="feature-icon">&#x1F4CA;</span></div>
+          <h3>Progress Analytics</h3>
+          <p>Visualisasi produktivitas mingguan dengan chart interaktif. Pahami pola belajarmu lebih dalam.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="400">
+          <div class="feature-icon-wrap"><span class="feature-icon">&#x1F4DA;</span></div>
+          <h3>Study Strategy</h3>
+          <p>Rekomendasi jadwal belajar optimal berdasarkan workload dan kapasitas harianmu.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="500">
+          <div class="feature-icon-wrap"><span class="feature-icon">&#x1F4BE;</span></div>
+          <h3>Auto Save</h3>
+          <p>Semua data tersimpan otomatis di browser. Progress-mu aman meski tidak ada internet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Planner Section -->
+  <section class="section planner-section" id="planner">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&#x1F9E0; Smart Planner</span>
+        <h2 class="section-title">Masukkan Tugasmu,<br><span class="gradient-text">Biarkan NeuroTask Merencanakannya</span></h2>
+        <p class="section-desc">Coba langsung — masukkan detail tugas dan lihat bagaimana NeuroTask memecahnya menjadi langkah-langkah yang bisa dikelola.</p>
+      </div>
+      <div class="planner-container">
+        <div class="planner-input-panel">
+          <div class="input-group">
+            <label for="taskName">Nama Tugas</label>
+            <input type="text" id="taskName" placeholder="Contoh: Essay Pancasila 2000 kata">
+          </div>
+          <div class="input-group">
+            <label for="taskCourse">Mata Kuliah</label>
+            <input type="text" id="taskCourse" placeholder="Contoh: Pendidikan Kewarganegaraan">
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="taskDeadline">Deadline</label>
+              <input type="date" id="taskDeadline">
+            </div>
+            <div class="input-group">
+              <label>Tingkat Kesulitan</label>
+              <div class="difficulty-selector" id="difficultySelector">
+                <button class="diff-btn" data-level="1">1</button>
+                <button class="diff-btn" data-level="2">2</button>
+                <button class="diff-btn active" data-level="3">3</button>
+                <button class="diff-btn" data-level="4">4</button>
+                <button class="diff-btn" data-level="5">5</button>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-full" id="generatePlan">
+            <span>&#x26A1;</span> Generate Smart Plan
+          </button>
+        </div>
+        <div class="planner-output-panel" id="plannerOutput">
+          <div class="planner-empty-state">
+            <div class="empty-icon">&#x1F4AD;</div>
+            <p>Masukkan detail tugas untuk melihat smart plan yang ter-generate otomatis.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Saved Tasks -->
+      <div class="saved-tasks" id="savedTasks">
+        <h3 class="saved-title">&#x1F4CB; Tugas Tersimpan</h3>
+        <div class="saved-tasks-list" id="savedTasksList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Section -->
+  <section class="section dashboard-section" id="dashboard">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&#x1F4CA; Dashboard</span>
+        <h2 class="section-title">Pantau Produktivitasmu<br><span class="gradient-text">dalam Satu Tampilan</span></h2>
+      </div>
+      <div class="dashboard-grid">
+        <div class="dash-card dash-stats">
+          <div class="dash-stat">
+            <span class="dash-stat-number" id="dashTotalTasks">0</span>
+            <span class="dash-stat-label">Total Tugas</span>
+          </div>
+          <div class="dash-stat">
+            <span class="dash-stat-number" id="dashCompleted">0</span>
+            <span class="dash-stat-label">Selesai</span>
+          </div>
+          <div class="dash-stat">
+            <span class="dash-stat-number" id="dashStreak">0</span>
+            <span class="dash-stat-label">Hari Streak &#x1F525;</span>
+          </div>
+          <div class="dash-stat">
+            <span class="dash-stat-number" id="dashFocusHrs">0</span>
+            <span class="dash-stat-label">Jam Fokus</span>
+          </div>
+        </div>
+        <div class="dash-card dash-chart-card">
+          <h4>Aktivitas Mingguan</h4>
+          <canvas id="weeklyChart"></canvas>
+        </div>
+        <div class="dash-card dash-ring-card">
+          <h4>Completion Rate</h4>
+          <div class="ring-chart-wrap">
+            <canvas id="ringChart"></canvas>
+            <div class="ring-center-text" id="ringPercent">0%</div>
+          </div>
+        </div>
+        <div class="dash-card dash-timer-card">
+          <h4>&#x1F3AF; Focus Timer</h4>
+          <div class="timer-display">
+            <svg class="timer-ring" viewBox="0 0 200 200">
+              <circle class="timer-ring-bg" cx="100" cy="100" r="90"/>
+              <circle class="timer-ring-progress" id="timerProgress" cx="100" cy="100" r="90"/>
+            </svg>
+            <div class="timer-text" id="timerText">25:00</div>
+          </div>
+          <div class="timer-modes">
+            <button class="timer-mode active" data-minutes="25">Focus</button>
+            <button class="timer-mode" data-minutes="5">Break</button>
+            <button class="timer-mode" data-minutes="15">Long Break</button>
+          </div>
+          <div class="timer-controls">
+            <button class="btn btn-primary" id="timerStartBtn">&#x25B6; Start</button>
+            <button class="btn btn-ghost" id="timerResetBtn">&#x21BB; Reset</button>
+          </div>
+          <div class="timer-session-info">Sesi hari ini: <span id="sessionCount">0</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insights Section -->
+  <section class="section insights-section" id="insights">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&#x1F4C8; Insights</span>
+        <h2 class="section-title">Pahami Pola Belajarmu<br><span class="gradient-text">dengan Data yang Bermakna</span></h2>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card reveal">
+          <div class="insight-header">
+            <span>&#x1F552;</span>
+            <h4>Waktu Paling Produktif</h4>
+          </div>
+          <div class="insight-chart-wrap">
+            <canvas id="productiveHoursChart"></canvas>
+          </div>
+          <p class="insight-tip" id="productiveTip">Kamu paling fokus di jam 20:00 - 22:00. Jadwalkan tugas sulit di sini!</p>
+        </div>
+        <div class="insight-card reveal">
+          <div class="insight-header">
+            <span>&#x1F4DA;</span>
+            <h4>Beban per Mata Kuliah</h4>
+          </div>
+          <div class="insight-chart-wrap">
+            <canvas id="courseLoadChart"></canvas>
+          </div>
+          <p class="insight-tip">Distribusi beban tugasmu berdasarkan mata kuliah.</p>
+        </div>
+        <div class="insight-card insight-tips-card reveal">
+          <div class="insight-header">
+            <span>&#x1F4A1;</span>
+            <h4>Tips Hari Ini</h4>
+          </div>
+          <div class="daily-tips" id="dailyTips">
+            <div class="tip-item"><span class="tip-icon">&#x1F3AF;</span><p>Mulai dengan tugas tersulit saat energi masih penuh.</p></div>
+            <div class="tip-item"><span class="tip-icon">&#x23F1;</span><p>Gunakan teknik 2-minute rule: jika bisa selesai dalam 2 menit, kerjakan sekarang.</p></div>
+            <div class="tip-item"><span class="tip-icon">&#x1F4AA;</span><p>Break setiap 25 menit meningkatkan retensi hingga 40%.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&#x1F4AC; Testimonials</span>
+        <h2 class="section-title">Dipercaya oleh<br><span class="gradient-text">Mahasiswa Seluruh Indonesia</span></h2>
+      </div>
+      <div class="testimonials-carousel" id="testimonialsCarousel">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-card">
+            <div class="testi-stars">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</div>
+            <p class="testi-text">"NeuroTask literally saved my semester. Dulu saya selalu panic sehari sebelum deadline, sekarang semua tugas terpecah jadi langkah kecil yang manageable."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">RA</div>
+              <div><strong>Rizky Ananda</strong><span>Teknik Informatika, UI</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testi-stars">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</div>
+            <p class="testi-text">"Focus timer-nya game changer! Saya bisa track berapa jam belajar per hari dan hasilnya IP saya naik dari 3.2 ke 3.7 dalam satu semester."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">SP</div>
+              <div><strong>Sarah Putri</strong><span>Manajemen, UGM</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testi-stars">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</div>
+            <p class="testi-text">"Sebagai mahasiswa yang ambil 24 SKS, NeuroTask membantu saya tetap waras. Dashboard-nya bikin saya bisa lihat workload secara visual."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">DW</div>
+              <div><strong>Dimas Wicaksono</strong><span>Kedokteran, UNAIR</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testi-stars">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</div>
+            <p class="testi-text">"UI-nya premium banget, nggak kayak tools mahasiswa biasa. Auto-breakdown feature-nya akurat dan menghemat waktu planning saya hingga 70%."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">AM</div>
+              <div><strong>Ayu Maharani</strong><span>Desain Komunikasi Visual, ITB</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="carouselPrev">&#x2190;</button>
+          <div class="carousel-dots" id="carouselDots"></div>
+          <button class="carousel-btn" id="carouselNext">&#x2192;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">&#x2753; FAQ</span>
+        <h2 class="section-title">Pertanyaan yang<br><span class="gradient-text">Sering Ditanyakan</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question">Apakah NeuroTask gratis?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>Ya! NeuroTask sepenuhnya gratis untuk semua mahasiswa. Tidak ada biaya tersembunyi atau fitur premium berbayar. Misi kami adalah membantu setiap mahasiswa mencapai potensi akademik terbaiknya.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Apakah data saya aman?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>Data disimpan secara lokal di browser kamu menggunakan LocalStorage. Tidak ada data yang dikirim ke server manapun, sehingga privasi kamu 100% terjaga.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Bagaimana Smart Breakdown bekerja?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>Algoritma kami menganalisis nama tugas, tingkat kesulitan, dan sisa waktu deadline untuk menghasilkan sub-tugas yang realistis dengan estimasi waktu pengerjaan yang akurat.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Bisa dipakai di HP?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>Tentu! NeuroTask didesain responsive dan bekerja sempurna di semua perangkat — desktop, tablet, maupun smartphone.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Apakah perlu membuat akun?<span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><p>Tidak perlu! Kamu bisa langsung menggunakan semua fitur tanpa registrasi. Cukup buka website dan mulai produktif.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section" id="cta">
+    <div class="cta-bg-animation"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Siap Mengubah Cara<br><span class="gradient-text">Kamu Mengerjakan Tugas?</span></h2>
+        <p class="cta-desc">Bergabung dengan ribuan mahasiswa yang sudah merasakan kekuatan otak kedua digital mereka.</p>
+        <div class="cta-form">
+          <input type="email" id="ctaEmail" placeholder="Masukkan email kampusmu" class="cta-input">
+          <button class="btn btn-primary btn-glow" id="ctaSubmit">Mulai Gratis &#x2192;</button>
+        </div>
+        <div class="cta-trust">
+          <span>&#x1F512; Tanpa spam</span>
+          <span>&#x26A1; Setup 30 detik</span>
+          <span>&#x1F4B3; Gratis selamanya</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-icon">&#x1F9E0;</span>
+          <span class="logo-text">Neuro<span class="logo-accent">Task</span></span>
+          <p>Your Second Brain for Academic Survival. Dibuat dengan &#x1F49C; untuk mahasiswa Indonesia.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigasi</h4>
+          <a href="#features">Features</a>
+          <a href="#planner">Planner</a>
+          <a href="#dashboard">Dashboard</a>
+          <a href="#insights">Insights</a>
+        </div>
+        <div class="footer-links">
+          <h4>Lainnya</h4>
+          <a href="#faq">FAQ</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NeuroTask. All rights reserved. Built for Web Design Competition.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/neural-bg.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
